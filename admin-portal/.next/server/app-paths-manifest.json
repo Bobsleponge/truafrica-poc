@@ -1,0 +1,15 @@
+{
+  "/admin/api/dashboard/performance/route": "app/admin/api/dashboard/performance/route.js",
+  "/admin/api/dashboard/summary/route": "app/admin/api/dashboard/summary/route.js",
+  "/admin/api/dashboard/top-performers/route": "app/admin/api/dashboard/top-performers/route.js",
+  "/admin/api/dashboard/activity/route": "app/admin/api/dashboard/activity/route.js",
+  "/admin/api/dashboard/health/route": "app/admin/api/dashboard/health/route.js",
+  "/admin/api/clients/list/route": "app/admin/api/clients/list/route.js",
+  "/admin/api/campaigns/list/route": "app/admin/api/campaigns/list/route.js",
+  "/(public)/login/page": "app/(public)/login/page.js",
+  "/(public)/login/quick-access/page": "app/(public)/login/quick-access/page.js",
+  "/(admin)/dashboard/page": "app/(admin)/dashboard/page.js",
+  "/(admin)/clients/page": "app/(admin)/clients/page.js",
+  "/(admin)/campaigns/page": "app/(admin)/campaigns/page.js",
+  "/(admin)/users/page": "app/(admin)/users/page.js"
+}

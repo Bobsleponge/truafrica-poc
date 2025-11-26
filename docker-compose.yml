@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # Next.js Frontend Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: truafrica-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      - OPENAI_API_KEY_PRIMARY=${OPENAI_API_KEY_PRIMARY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - AIRTIME_API_KEY=${AIRTIME_API_KEY:-}
+      - MOBILE_MONEY_API_KEY=${MOBILE_MONEY_API_KEY:-}
+      - VOUCHER_API_KEY=${VOUCHER_API_KEY:-}
+    env_file:
+      - .env.local
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - truafrica-network
+
+  # Development service (optional - for hot reload)
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: truafrica-app-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      - OPENAI_API_KEY_PRIMARY=${OPENAI_API_KEY_PRIMARY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - AIRTIME_API_KEY=${AIRTIME_API_KEY:-}
+      - MOBILE_MONEY_API_KEY=${MOBILE_MONEY_API_KEY:-}
+      - VOUCHER_API_KEY=${VOUCHER_API_KEY:-}
+    env_file:
+      - .env.local
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+    restart: unless-stopped
+    networks:
+      - truafrica-network
+    profiles:
+      - dev
+
+networks:
+  truafrica-network:
+    driver: bridge
+
