@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 admin-portal/node_modules/
+
+# Admin portal
+admin-portal/node_modules/
+admin-portal/.next/

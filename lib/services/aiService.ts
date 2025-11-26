@@ -8,9 +8,8 @@ import { randomUUID } from 'crypto'
 import OpenAI from 'openai'
 import type { CampaignQuestion, CampaignOverview, CampaignGoals, CampaignAudience } from '@/types/campaign-journey'
 
-// Primary API key (new) - can be set via environment variable or uses provided key
-const OPENAI_API_KEY_PRIMARY = process.env.OPENAI_API_KEY_PRIMARY || 
-  'YOUR_OPENAI_API_KEY'
+// Primary API key - must be set via environment variable
+const OPENAI_API_KEY_PRIMARY = process.env.OPENAI_API_KEY_PRIMARY
 
 // Backup API key (current/legacy) - from OPENAI_API_KEY environment variable
 const OPENAI_API_KEY_BACKUP = process.env.OPENAI_API_KEY
